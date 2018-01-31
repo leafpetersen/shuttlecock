@@ -350,7 +350,7 @@ class StreamMonad<T> extends Monad<T> implements Stream<T> {
   FutureMonad<T> firstWhere(bool test(T element),
           {Object defaultValue(), T orElse()}) =>
       new FutureMonad(
-          _stream.firstWhere(test, defaultValue: defaultValue ?? orElse));
+          _stream.firstWhere(test, defaultValue: defaultValue, orElse: orElse));
 
   @override
   StreamMonad<S> flatMap<S>(Function1<T, StreamMonad<S>> f) {
@@ -450,7 +450,7 @@ class StreamMonad<T> extends Monad<T> implements Stream<T> {
   FutureMonad<T> lastWhere(bool test(T element),
           {Object defaultValue(), T orElse()}) =>
       new FutureMonad(
-          _stream.lastWhere(test, defaultValue: defaultValue ?? orElse));
+          _stream.lastWhere(test, defaultValue: defaultValue, orElse: orElse));
 
   @override
   StreamSubscription<T> listen(void onData(T event),
@@ -538,7 +538,7 @@ class StreamMonad<T> extends Monad<T> implements Stream<T> {
 
   @override
   FutureMonad<T> singleWhere(bool test(T element), {T orElse()}) =>
-      new FutureMonad(_stream.singleWhere(test) ?? orElse());
+      new FutureMonad(_stream.singleWhere(test, orElse: orElse));
 
   @override
   StreamMonad<T> skip(int count) => new StreamMonad(_stream.skip(count));
